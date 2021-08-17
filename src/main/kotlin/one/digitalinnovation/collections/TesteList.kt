@@ -1,9 +1,9 @@
 package one.digitalinnovation.collections
 
 fun main(){
-    val joao =Funcionarios("Joao",500.0)
-    val maria= Funcionarios("Maria",7500.0)
-    val ariadne=Funcionarios("Ariadne",100.0)
+    val joao =Funcionarios("Joao",5000.0,"PJ")
+    val maria= Funcionarios("Maria",7500.0,"PJ")
+    val ariadne=Funcionarios("Ariadne",1000.0,"CLT")
 
     val FuncionariosLista = listOf(joao,maria,ariadne)
 
@@ -12,15 +12,18 @@ fun main(){
 
         println("-----------")
 
-    println(FuncionariosLista.find { it.nome =="Joao" })
+    println(FuncionariosLista.find { it.tipoContratacao =="CLT" })
 
     println("-----------")
 
 
 
     FuncionariosLista
-        .sortedBy { it.salario }
+        .groupBy { it.tipoContratacao }
+        //.sortedBy { it.salario }
         .forEach{ println(it)}
+
+
 
 
 
@@ -32,7 +35,8 @@ fun main(){
 
 data class Funcionarios(
     val nome:String,
-    val salario:Double = 0.0
+    val salario:Double = 0.0,
+    val tipoContratacao:String
 
 ) {
     override fun toString(): String =
